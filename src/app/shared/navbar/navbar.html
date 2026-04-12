@@ -18,7 +18,7 @@
 		<div id="main-menu" class="navbar__menu" [class.is-open]="isMenuOpen()">
             <a class="navbar__brand" routerLink="/home" (click)="closeMenus()" aria-label="Ir al inicio Xinergia TotalCare">
 			<span class="navbar__logo" aria-hidden="true">
-				<img src="logo.png" alt="Xinergia TotalCare">
+				<img src="logo.png" alt="Xinergia TotalCare" style="margin-right: 1000px !important;">
 			</span>
 		</a>
 			<ul class="navbar__links">
@@ -38,10 +38,20 @@
 
 					<ul id="specialties-menu" class="navbar__dropdown-menu" [class.is-visible]="isSpecialtiesOpen()">
 						<li>
-							<a routerLink="/plans" (click)="closeMenus()">Especialidades odontologicas</a>
+							<a
+								routerLink="/dental"
+								fragment="dental-section"
+								routerLinkActive="is-active"
+								(click)="closeMenus()"
+							>Especialidades odontologicas</a>
 						</li>
 						<li>
-							<a routerLink="/plans" (click)="closeMenus()">Especialidades medicas</a>
+							<a
+								routerLink="/specialties"
+								fragment="medical-section"
+								routerLinkActive="is-active"
+								(click)="closeMenus()"
+							>Especialidades medicas</a>
 						</li>
 					</ul>
 				</li>

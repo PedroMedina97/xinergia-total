@@ -4,12 +4,14 @@ import { About } from "./pages/about/about";
 import { Contact } from "./pages/contact/contact";
 import { Plans } from "./pages/plans/plans";
 import { Specialties } from "./pages/specialties/specialties";
+import { Dental } from "./shared/dental/dental";
 
 export const ROUTES: Routes = [
     { path: 'home', component: Home },
     { path: 'about', component: About },
     { path: 'contact', component: Contact },
     { path: 'plans', component: Plans },
+    { path: 'dental', component: Dental },
     { path: 'specialties', component: Specialties },
     { path: '', redirectTo: 'home', pathMatch: 'full' }
 ]; 
