@@ -215,29 +215,47 @@
 	</section>
 
 	<section class="specialties" aria-labelledby="specialties-title">
-		<div class="specialties__wrap">
-			<div class="specialties__promos" role="list" aria-label="Promociones destacadas">
-				<article class="promo-card" role="listitem">
-					<p class="promo-card__eyebrow">Beneficios</p>
-					<h3>50% de descuento en blanqueamiento</h3>
-					<p class="promo-card__copy">Sonrie con mas confianza a un precio accesible.</p>
-					<a class="promo-card__cta" routerLink="/contact">Contratar</a>
-				</article>
+		<div class="specialties__promos promo-slider" aria-roledescription="carousel" aria-label="Promociones destacadas">
+			<div
+				class="promo-slider__track"
+				[style.transform]="'translateX(-' + (activePromoIndex() * 100) + '%)'"
+			>
+				@for (slide of promoSlides; track $index) {
+					<article
+						class="promo-slider__slide"
+						role="group"
+						[attr.aria-label]="'Promocion ' + ($index + 1) + ' de ' + promoSlides.length"
+					>
+						<div class="promo-card">
+							<p class="promo-card__eyebrow">{{ slide.eyebrow }}</p>
+							<h3>{{ slide.title }}</h3>
+							<p class="promo-card__copy">{{ slide.copy }}</p>
+							<a class="promo-card__cta" routerLink="/contact">Contratar</a>
+						</div>
 
-				<article class="promo-card promo-card--image" role="listitem" aria-label="Tratamiento dental en clinica">
-					<img
-						src="https://images.unsplash.com/photo-1609840114035-3c981b782dfe?auto=format&fit=crop&w=1400&q=80"
-						alt="Paciente durante procedimiento de blanqueamiento dental"
-					/>
-				</article>
-
-				<article class="promo-card" role="listitem">
-					<p class="promo-card__eyebrow">Beneficios</p>
-					<h3>15% de descuento en implantes</h3>
-					<p class="promo-card__copy">Solucion duradera y funcional para dientes perdidos.</p>
-					<a class="promo-card__cta" routerLink="/contact">Contratar</a>
-				</article>
+						<article class="promo-card promo-card--image" aria-label="Tratamiento dental en clinica">
+							<img [src]="slide.image" [alt]="slide.imageAlt" />
+						</article>
+					</article>
+				}
 			</div>
+
+			<div class="promo-slider__dots" role="tablist" aria-label="Selector de promociones">
+				@for (slide of promoSlides; track $index) {
+					<button
+						type="button"
+						class="promo-slider__dot"
+						[class.promo-slider__dot--active]="activePromoIndex() === $index"
+						(click)="setPromoSlide($index)"
+						[attr.aria-label]="'Ir a la promocion ' + ($index + 1)"
+						[attr.aria-selected]="activePromoIndex() === $index"
+						role="tab"
+					></button>
+				}
+			</div>
+		</div>
+
+		<div class="specialties__wrap">
 
 			<header class="specialties__header">
 				<h2 id="specialties-title">Especialidades odontologicas</h2>
@@ -456,6 +474,32 @@
 					</p>
 					<a routerLink="/about" class="about-highlight__cta">Más información</a>
 				</div>
+			</div>
+		</div>
+	</section>
+
+	<section class="about-story" aria-labelledby="about-story-title">
+		<div class="about-story__wrap">
+			<div class="about-story__content">
+				<h2 id="about-story-title">Acerca de nosotros</h2>
+
+				<p>
+					En Xinergia Total Care creemos que una buena salud bucal transforma vidas. Por eso,
+					combinamos atencion humana, tecnologia moderna y un equipo de especialistas altamente
+					capacitados para brindarte una experiencia odontologica clara, accesible y de calidad.
+				</p>
+
+				<p>
+					Nuestro equipo multidisciplinario abarca todas las especialidades odontologicas, lo que
+					nos permite atender desde limpiezas de rutina hasta procedimientos avanzados como
+					implantes, ortodoncia, estetica dental y rehabilitacion.
+				</p>
+
+				<a routerLink="/about" class="about-story__cta">Mas informacion</a>
+			</div>
+
+			<div class="about-story__visual" aria-hidden="true">
+				<img src="assets/doc_2.png" alt="" />
 			</div>
 		</div>
 	</section>
